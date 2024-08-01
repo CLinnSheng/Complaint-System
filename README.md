@@ -1,3 +1,7 @@
-# Complaint-System
-A project for the course Programming Technique II
-This project is about building a a unified complaint system that can refer to the different department in UTM
+# Complaint System in C++
+## Project Overview
+This Complaint System is a console-based application developed in C++ that allows student to file complaint and also admins to check the complaints filed by student. This system enables student to file complaint simply by logging in if they had registered an account or else they can register a new account.
+
+## Key Features
+1. User Authentication
+   

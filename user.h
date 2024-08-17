@@ -19,19 +19,19 @@ class PersonalDetails{
 
 class User{
 
-    protected:
-        string userName;
-        string password;
-
-    public:
-        User(string pass, string uN) : password(pass), userName(uN) {}
-        
-        void setPass(string pass){ password = pass; }
-        
+	protected:
+		string userName;
+		string password;
+	
+	public:
+		User(string pass, string uN) : password(pass), userName(uN) {}
+		
+		void setPass(string pass){ password = pass; }
+		
 		void setUserName(string uN){ userName = uN; }
-       
-        string getPass() const{ return password; }
-        
+		
+		string getPass() const{ return password; }
+		
 		string getUserName() const{ return userName; }
 		
 		virtual void setID(string) = 0;
@@ -52,54 +52,53 @@ class User{
 
 class Student : public User{
 
-    private:
-        Complaint *complaint[4][5] = {NULL};
-        PersonalDetails matricNo;
+	private:
+		Complaint *complaint[4][5] = {NULL};
+		PersonalDetails matricNo;
         
-    public:
-        Student(string mN="", string pass="", string uN="") : User(pass, uN), matricNo(mN){}
-        
-        void setID(string mN){ matricNo.setPersonalDetails(mN); }
-        
+	public:
+	        Student(string mN="", string pass="", string uN="") : User(pass, uN), matricNo(mN){}
+	        
+	        void setID(string mN){ matricNo.setPersonalDetails(mN); }
+	        
 		void fileComplaint(string desc, int cat, int nComplaint){
         	
-        	switch(cat){
-        		
-        		case 0:
-        			if(complaint[cat][nComplaint] == NULL)
-        				complaint[cat][nComplaint] = new Arcade(desc, "Arcade");
-        			break;
-        			
-        		case 1:
-        			if(complaint[cat][nComplaint] == NULL)        		
-        				complaint[cat][nComplaint] = new Faculty(desc, "Faculty");
-        			break;
-        			
-        		case 2:
-        			if(complaint[cat][nComplaint] == NULL)
-        				complaint[cat][nComplaint] = new Hostel(desc, "Hostel");
-        			break;
-        			
-        		case 3:
-        			if(complaint[cat][nComplaint] == NULL)
-	        			complaint[cat][nComplaint] = new Other(desc, "Other");
-        			break;
-										        		
-			}
-			
+	        	switch(cat){
+	        		
+	        		case 0:
+	        			if(complaint[cat][nComplaint] == NULL)
+	        				complaint[cat][nComplaint] = new Arcade(desc, "Arcade");
+	        			break;
+	        			
+	        		case 1:
+	        			if(complaint[cat][nComplaint] == NULL)        		
+	        				complaint[cat][nComplaint] = new Faculty(desc, "Faculty");
+	        			break;
+	        			
+	        		case 2:
+	        			if(complaint[cat][nComplaint] == NULL)
+	        				complaint[cat][nComplaint] = new Hostel(desc, "Hostel");
+	        			break;
+	        			
+	        		case 3:
+	        			if(complaint[cat][nComplaint] == NULL)
+		        			complaint[cat][nComplaint] = new Other(desc, "Other");
+	        			break;
+											        		
+				}
+				
 		}
 		
 		string getID() const{ return matricNo.getPersonalDetails(); }
-		
+			
 		void printDetails(){
-			cout<<"Username: "<<userName
-				<<"\nMatric No: "<<getID()<<endl;
+			cout<<"Username: "<< userName <<"\nMatric No: "<<getID()<<endl;
 		}
 		
 		void printComplaint(){
 			
 			int no=1;
-
+		
 			for(int i=0; i<4; i++)
 				for(int j=0; j<5; j++)
 					if(complaint[i][j] != NULL)
@@ -130,22 +129,21 @@ class Student : public User{
 };
 
 class Staff : public User{
-	
-	private:
-        PersonalDetails staffID;
 
-    public:
-        Staff(string sID="", string pass="", string uN="") : User(pass, uN), staffID(sID) {}
-        
-        void fileComplaint(string a, int b, int c){}
+	private:
+		PersonalDetails staffID;
+
+	public:
+		Staff(string sID="", string pass="", string uN="") : User(pass, uN), staffID(sID) {}
 		
+		void fileComplaint(string a, int b, int c){}
+			
 		string getID() const{ return staffID.getPersonalDetails(); }
-        
-        void setID(string sID){ staffID.setPersonalDetails(sID); }
-        
+		
+		void setID(string sID){ staffID.setPersonalDetails(sID); }
+		
 		void printDetails(){
-			cout<<"Username: "<<userName
-				<<"\nID: "<<getID()<<endl;
+			cout<<"Username: "<< userName <<"\nID: "<<getID()<<endl;
 		}
 		
 		void printComplaint(){}
